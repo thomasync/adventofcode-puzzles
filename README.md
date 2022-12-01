@@ -13,11 +13,3 @@ To concentrate only on the puzzles, i set up a reloading system that executes th
 But it's also possible to generate the js files.
 
     npm run build
-
-
-## Puzzles
-
-### 2022
- - 1 December
-	 - [x] Calorie Counting (24 minutes)
-	 - [x] Part Two (13 minutes)

@@ -1,8 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-const ts = require("typescript");
-
 (() => {
+	const fs = require("fs");
+	const path = require("path");
+	const ts = require("typescript");
+	
 	const getFolders = (): string[] => {
 		const folders = fs.readdirSync(__dirname);
 		return folders.filter((folder: string) => folder.match(/^2\d{3}$/));
