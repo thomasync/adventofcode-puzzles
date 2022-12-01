@@ -70,7 +70,7 @@ const input = fs.readFileSync(
 	"utf8"
 );
 
-let caloriesElves: number[] = [];
+const caloriesElves: number[] = [];
 let elve = 0;
 input.split("\n").forEach((calorie: string) => {
 	if (calorie === "") {
@@ -86,8 +86,8 @@ const elveStrong = {
     index: caloriesElves.indexOf(Math.max(...caloriesElves)) + 1
 };
 
-caloriesElves.sort((acc, curr) => curr - acc);
-const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc, curr) => acc + curr);
+caloriesElves.sort((acc: number, curr: number) => curr - acc);
+const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc: number, curr: number) => acc + curr);
 
 // Result
 

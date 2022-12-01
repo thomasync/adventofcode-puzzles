@@ -6,7 +6,7 @@
   "main": "main.ts",
   "scripts": {
     "build": "ts-node ./build.ts",
-    "start": "nodemon --watch '**/*' --ext txt,ts --ignore node_modules --quiet --exec ts-node ./main.ts"
+    "start": "nodemon --watch '**/*' --ext ts --ignore node_modules --quiet --exec ts-node ./main.ts"
   },
   "repository": {
     "type": "git",
