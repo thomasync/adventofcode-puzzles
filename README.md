@@ -20,9 +20,6 @@ But it's also possible to generate the js files.
 
     npm run build
 
-But it's also possible to generate the js files.
-
-    npm run build
 
 And you can generate a calendar, because otherwise it's sad without colors
 
