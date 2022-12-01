@@ -1,6 +1,7 @@
 # My Advent Of Code puzzle solutions
 
 Based on the site [Advent Of Code](https://adventofcode.com/) created by [Eric Wastl](https://github.com/topaz).
+
 Which every december gives an advent calendar, allowing to have fun to solve puzzles.
 
 I decided to solve these in **typescript**.
