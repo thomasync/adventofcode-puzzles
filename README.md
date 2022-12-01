@@ -1,4 +1,10 @@
-# My Advent Of Code puzzle solutions
+# <div align="center">My Advent Of Code puzzle solutions</div>  
+
+<div align="center">    
+    <img src="imgs/calendar.png#gh-dark-mode-only" alt="My Advent Of Code Calendar" width="600" />
+    <img src="imgs/calendar_light.png#gh-light-mode-only" alt="My Advent Of Code Calendar" width="600" />
+</div>
+<br />
 
 Based on the site [Advent Of Code](https://adventofcode.com/) created by [Eric Wastl](https://github.com/topaz).
 

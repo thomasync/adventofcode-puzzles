@@ -6,7 +6,8 @@
   "main": "main.ts",
   "scripts": {
     "build": "ts-node ./build.ts",
-    "start": "nodemon --watch '**/*' --ext ts --ignore node_modules --quiet --exec ts-node ./main.ts"
+    "start": "nodemon --watch '**/*' --ext ts --ignore node_modules --quiet --exec ts-node ./main.ts",
+    "calendar": "ts-node ./calendar.ts"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/thomasync/adventofcode-puzzles#readme",
   "devDependencies": {
     "nodemon": "^2.0.20",
+    "puppeteer": "^19.3.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3"
   }
