@@ -2,20 +2,15 @@
 	const fs = require("fs");
 	const path = require("path");
 	const ts = require("typescript");
-	
+
 	const getFolders = (): string[] => {
 		const folders = fs.readdirSync(__dirname);
 		return folders.filter((folder: string) => folder.match(/^2\d{3}$/));
 	};
 
 	const transpileFile = (folder: string, file: string): void => {
-		const output = ts.transpile(
-			fs.readFileSync(path.join(folder, file), "utf8")
-		);
-		fs.writeFileSync(
-			path.join(folder, "js", file.replace(".ts", ".js")),
-			output
-		);
+		const output = ts.transpile(fs.readFileSync(path.join(folder, file), "utf8"));
+		fs.writeFileSync(path.join(folder, "js", file.replace(".ts", ".js")), output);
 	};
 
 	getFolders().forEach((folder: string) => {

@@ -8,7 +8,7 @@
 		modified: number;
 	}
 
-    const getFolders = (): string[] => {
+	const getFolders = (): string[] => {
 		const folders = fs.readdirSync(__dirname);
 		return folders.filter((folder: string) => folder.match(/^2\d{3}$/));
 	};
@@ -22,12 +22,12 @@
 			if (stats.isDirectory()) {
 				arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
 			} else {
-				if(file.match(/\.ts$/)) {
+				if (file.match(/\.ts$/)) {
 					arrayOfFiles.push({
 						name: path.join(__dirname, dirPath, "/", file),
 						modified: stats.mtimeMs,
 					});
-				};
+				}
 			}
 		});
 
