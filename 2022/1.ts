@@ -61,37 +61,38 @@ then the fifth Elf (with 10000 Calories). The sum of the Calories carried by the
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
 */
+(() => {
+	const fs = require("fs");
+	const path = require("path");
 
-const fs = require("fs");
-const path = require("path");
+	const input = fs.readFileSync(
+		path.join(__dirname, "2022/inputs/1.txt"),
+		"utf8"
+	);
 
-const input = fs.readFileSync(
-	path.join(__dirname, "2022/inputs/1.txt"),
-	"utf8"
-);
+	const caloriesElves: number[] = [];
+	let elve = 0;
+	input.split("\n").forEach((calorie: string) => {
+		if (calorie === "") {
+			caloriesElves.push(elve);
+			elve = 0;
+		} else {
+			elve += parseInt(calorie);
+		}
+	});
 
-const caloriesElves: number[] = [];
-let elve = 0;
-input.split("\n").forEach((calorie: string) => {
-	if (calorie === "") {
-		caloriesElves.push(elve);
-		elve = 0;
-	} else {
-		elve += parseInt(calorie);
-	}
-});
+	const elveStrong = {
+		calories: Math.max(...caloriesElves),
+		index: caloriesElves.indexOf(Math.max(...caloriesElves)) + 1
+	};
 
-const elveStrong = {
-    calories: Math.max(...caloriesElves),
-    index: caloriesElves.indexOf(Math.max(...caloriesElves)) + 1
-};
+	caloriesElves.sort((acc: number, curr: number) => curr - acc);
+	const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc: number, curr: number) => acc + curr);
 
-caloriesElves.sort((acc: number, curr: number) => curr - acc);
-const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc: number, curr: number) => acc + curr);
+	// Result
 
-// Result
+	console.log(`The elve who has the most calories is the ${elveStrong.index} with ${elveStrong.calories} calories.`);
+	console.log(`The top 3 elves can carry ${topThreeElvesCalories} calories.`);
 
-console.log(`The elve who has the most calories is the ${elveStrong.index} with ${elveStrong.calories} calories.`);
-console.log(`The top 3 elves can carry ${topThreeElvesCalories} calories.`);
-
-fs.writeFileSync(path.join(__dirname, "2022/outputs/1.txt"),`${elveStrong.calories}\n${topThreeElvesCalories}`);
+	fs.writeFileSync(path.join(__dirname, "2022/outputs/1.txt"),`${elveStrong.calories}\n${topThreeElvesCalories}`);
+})();

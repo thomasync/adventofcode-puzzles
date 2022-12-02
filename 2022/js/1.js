@@ -61,27 +61,29 @@ then the fifth Elf (with 10000 Calories). The sum of the Calories carried by the
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
 */
-var fs = require("fs");
-var path = require("path");
-var input = fs.readFileSync(path.join(__dirname, "2022/inputs/1.txt"), "utf8");
-var caloriesElves = [];
-var elve = 0;
-input.split("\n").forEach(function (calorie) {
-    if (calorie === "") {
-        caloriesElves.push(elve);
-        elve = 0;
-    }
-    else {
-        elve += parseInt(calorie);
-    }
-});
-var elveStrong = {
-    calories: Math.max.apply(Math, caloriesElves),
-    index: caloriesElves.indexOf(Math.max.apply(Math, caloriesElves)) + 1
-};
-caloriesElves.sort(function (acc, curr) { return curr - acc; });
-var topThreeElvesCalories = caloriesElves.slice(0, 3).reduce(function (acc, curr) { return acc + curr; });
-// Result
-console.log("The elve who has the most calories is the ".concat(elveStrong.index, " with ").concat(elveStrong.calories, " calories."));
-console.log("The top 3 elves can carry ".concat(topThreeElvesCalories, " calories."));
-fs.writeFileSync(path.join(__dirname, "2022/outputs/1.txt"), "".concat(elveStrong.calories, "\n").concat(topThreeElvesCalories));
+(function () {
+    var fs = require("fs");
+    var path = require("path");
+    var input = fs.readFileSync(path.join(__dirname, "2022/inputs/1.txt"), "utf8");
+    var caloriesElves = [];
+    var elve = 0;
+    input.split("\n").forEach(function (calorie) {
+        if (calorie === "") {
+            caloriesElves.push(elve);
+            elve = 0;
+        }
+        else {
+            elve += parseInt(calorie);
+        }
+    });
+    var elveStrong = {
+        calories: Math.max.apply(Math, caloriesElves),
+        index: caloriesElves.indexOf(Math.max.apply(Math, caloriesElves)) + 1
+    };
+    caloriesElves.sort(function (acc, curr) { return curr - acc; });
+    var topThreeElvesCalories = caloriesElves.slice(0, 3).reduce(function (acc, curr) { return acc + curr; });
+    // Result
+    console.log("The elve who has the most calories is the ".concat(elveStrong.index, " with ").concat(elveStrong.calories, " calories."));
+    console.log("The top 3 elves can carry ".concat(topThreeElvesCalories, " calories."));
+    fs.writeFileSync(path.join(__dirname, "2022/outputs/1.txt"), "".concat(elveStrong.calories, "\n").concat(topThreeElvesCalories));
+})();
