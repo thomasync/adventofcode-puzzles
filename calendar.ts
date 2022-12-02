@@ -1,7 +1,7 @@
 (async () => {
-    const puppeteer = require("puppeteer");
-    const fs = require("fs");
-    const path = require("path");
+	const puppeteer = require("puppeteer");
+	const fs = require("fs");
+	const path = require("path");
 
 	const browser = await puppeteer.launch({
 		headless: true,
@@ -23,18 +23,19 @@
 		if (file.match(/\d{1,2}\./)) {
 			resolveds.push({
 				day: parseInt(file.split(".")[0]),
-				image:"data:image/png;base64," + fs.readFileSync(path.join(__dirname, "imgs/", file)).toString("base64"),
+				image:
+					"data:image/png;base64," +
+					fs.readFileSync(path.join(__dirname, "imgs/", file)).toString("base64"),
 			});
 		}
 	});
 
 	content = content.replace("{{resolveds}}", JSON.stringify(resolveds));
 
-
 	await page.setContent(content);
-	
+
 	await page.waitForTimeout(600);
-    await page.screenshot({ path: path.join(__dirname, "imgs/calendar.png") });
-	
+	await page.screenshot({ path: path.join(__dirname, "imgs/calendar.png") });
+
 	await browser.close();
 })();
