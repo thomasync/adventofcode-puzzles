@@ -43,5 +43,6 @@
 		return acc;
 	});
 
+	console.clear();
 	eval(ts.transpile(fs.readFileSync(lastModified.name, "utf8")));
 })();
