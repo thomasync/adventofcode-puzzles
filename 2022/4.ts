@@ -95,7 +95,7 @@ export function part2(input: string[]): number {
 				});
 		})
 		.reduce((acc: number, curr: number[][]) => {
-			const inter = curr[0].filter((value) => curr[1].includes(value));
+			const inter = curr[0].filter((value: number) => curr[1].includes(value));
 			if (inter.length > 0) {
 				return acc + 1;
 			}
