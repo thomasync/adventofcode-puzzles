@@ -4,7 +4,7 @@
 
 # <div align="center">My Advent Of Code puzzle solutions</div>  
 
-<br />
+[![Test puzzles](https://github.com/thomasync/adventofcode-puzzles/actions/workflows/tests.yml/badge.svg)](https://github.com/thomasync/adventofcode-puzzles/actions/workflows/tests.yml)
 
 Based on the site [Advent Of Code](https://adventofcode.com/) created by [Eric Wastl](https://github.com/topaz).
 
