@@ -61,18 +61,20 @@ then the fifth Elf (with 10000 Calories). The sum of the Calories carried by the
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
 */
-(() => {
-	const fs = require("fs");
-	const path = require("path");
 
-	const input = fs.readFileSync(
-		path.join(__dirname, "2022/inputs/1.txt"),
-		"utf8"
-	);
+export default function(input: string[]): void {
+	const part1 = exports.part1(input);
+    const part2 = exports.part2(part1[1]);
 
-	const caloriesElves: number[] = [];
+	console.log(`The elf with the most calories has ${part1[0]} calories.`);
+    console.log(`The top 3 elves can carry ${part2} calories.`);
+}
+
+export function part1(input: string[]): [number, number[]] {
+    const caloriesElves: number[] = [];
 	let elve = 0;
-	input.split("\n").forEach((calorie: string) => {
+
+    input.forEach((calorie: string) => {
 		if (calorie === "") {
 			caloriesElves.push(elve);
 			elve = 0;
@@ -81,18 +83,13 @@ Find the top three Elves carrying the most Calories. How many Calories are those
 		}
 	});
 
-	const elveStrong = {
-		calories: Math.max(...caloriesElves),
-		index: caloriesElves.indexOf(Math.max(...caloriesElves)) + 1
-	};
+	const caloriesElf = Math.max(...caloriesElves);
+    return [caloriesElf, caloriesElves];
+}
 
+export function part2(caloriesElves: number[]): number {    
 	caloriesElves.sort((acc: number, curr: number) => curr - acc);
 	const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc: number, curr: number) => acc + curr);
 
-	// Result
-
-	console.log(`The elve who has the most calories is the ${elveStrong.index} with ${elveStrong.calories} calories.`);
-	console.log(`The top 3 elves can carry ${topThreeElvesCalories} calories.`);
-
-	fs.writeFileSync(path.join(__dirname, "2022/outputs/1.txt"),`${elveStrong.calories}\n${topThreeElvesCalories}`);
-})();
+	return topThreeElvesCalories;
+}

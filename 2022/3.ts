@@ -73,20 +73,15 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 
 */
 
-(() => {
-	const fs = require("fs");
-	const path = require("path");
+export default function(input: string[]): void {
+	const part1 = exports.part1(input);
+    const part2 = exports.part2(input);
 
-	const input = fs
-		.readFileSync(path.join(__dirname, "2022/inputs/3.txt"), "utf8")
-		.split("\n");
+	console.log(`Sum of items : ${part1}`);
+	console.log(`Sum of typed items : ${part2}`);
+}
 
-	function score(letter: string): number {
-		let sumItem = parseInt(letter, 36) - 9;
-		if (/^[A-Z]*$/.test(letter)) sumItem += 26;
-		return sumItem;
-	}
-
+export function part1(input: string[]): number {
 	let sumPriorities = 0;
 	input.forEach((line: string) => {
 		const firstPart = line.substring(0, line.length / 2);
@@ -98,6 +93,10 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 		if (item) sumPriorities += score(item);
 	});
 
+	return sumPriorities;
+}
+
+export function part2(input: string[]): number {    
 	let sumPrioritiesTyped = 0;
 	let lineIndex = 0;
 	while (lineIndex < input.length) {
@@ -110,7 +109,11 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 		lineIndex += 3;
 	}
 
-	console.log(sumPriorities);
-	console.log(sumPrioritiesTyped);
-	fs.writeFileSync(path.join(__dirname, "2022/outputs/3.txt"), `${sumPriorities}\n${sumPrioritiesTyped}`);
-})();
+	return sumPrioritiesTyped;
+}
+
+function score(letter: string): number {
+	let sumItem = parseInt(letter, 36) - 9;
+	if (/^[A-Z]*$/.test(letter)) sumItem += 26;
+	return sumItem;
+}

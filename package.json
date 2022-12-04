@@ -5,6 +5,7 @@
   "description": "My Advent Of Code puzzle solutions",
   "main": "main.ts",
   "scripts": {
+    "test": "jest --preset ts-jest",
     "build": "ts-node ./build.ts && npm run calendar",
     "start": "nodemon --watch '**/*' --ext ts --ignore node_modules --quiet --exec ts-node ./main.ts",
     "calendar": "ts-node ./calendar.ts"
@@ -14,15 +15,18 @@
     "url": "git+https://github.com/thomasync/adventofcode-puzzles.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "thomasync",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thomasync/adventofcode-puzzles/issues"
   },
   "homepage": "https://github.com/thomasync/adventofcode-puzzles#readme",
   "devDependencies": {
+    "@types/jest": "^29.2.3",
+    "jest": "^29.3.1",
     "nodemon": "^2.0.20",
     "puppeteer": "^19.3.0",
+    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3"
   }

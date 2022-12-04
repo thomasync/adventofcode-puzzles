@@ -64,44 +64,50 @@ what would your total score be if everything goes exactly according to your stra
 
 */
 
-(() => {
-	const fs = require("fs");
-	const path = require("path");
+const attributs = {
+	win: { A: "Y", B: "Z", C: "X" },
+	draw: { A: "X", B: "Y", C: "Z" },
+	lose: { A: "Z", B: "X", C: "Y" },
+	scores: { X: 1, Y: 2, Z: 3 }
+};
 
-	const input = fs
-		.readFileSync(path.join(__dirname, "2022/inputs/2.txt"), "utf8")
-		.split("\n");
+export default function(input: string[]): void {
+	const part1 = exports.part1(input);
+    const part2 = exports.part2(input);
 
-	const win = { A: "Y", B: "Z", C: "X" };
-	const draw = { A: "X", B: "Y", C: "Z" };
-	const lose = { A: "Z", B: "X", C: "Y" };
-	const scores = { X: 1, Y: 2, Z: 3 };
+	console.log(`Total score guide part 1 ${part1}`);
+	console.log(`Total score guide part 2: ${part2}`);
+}
 
+export function part1(input: string[]): number {
 	let totalScore = 0;
-	let totalScoreLoss = 0;
 	input.forEach((line: string) => {
 		const [opponent, you] = line.split(" ");
-		const score = scores[you];
+		const score = attributs.scores[you];
 
-		if (win[opponent] === you) {
+		if (attributs.win[opponent] === you) {
 			totalScore += 6;
-		} else if (draw[opponent] === you) {
+		} else if (attributs.draw[opponent] === you) {
 			totalScore += 3;
-		}
-
-		// Part 2
-		if (you === 'X') {
-			totalScoreLoss += scores[lose[opponent]];
-		} else if (you === 'Y') {
-			totalScoreLoss += scores[draw[opponent]] + 3;
-		} else {
-			totalScoreLoss += scores[win[opponent]] + 6;
-		}
+		}	
 		totalScore += score;
 	});
 
-	console.log(totalScore);
-	console.log(totalScoreLoss);
+	return totalScore;
+}
 
-	fs.writeFileSync(path.join(__dirname, "2022/outputs/2.txt"), `${totalScore}\n${totalScoreLoss}`);
-})();
+export function part2(input: string[]): number {    
+	let totalScore = 0;
+	input.forEach((line: string) => {
+		const [opponent, you] = line.split(" ");
+		if (you === 'X') {
+			totalScore += attributs.scores[attributs.lose[opponent]];
+		} else if (you === 'Y') {
+			totalScore += attributs.scores[attributs.draw[opponent]] + 3;
+		} else {
+			totalScore += attributs.scores[attributs.win[opponent]] + 6;
+		}
+	});
+
+	return totalScore;
+}

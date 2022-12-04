@@ -9,7 +9,8 @@
 	};
 
 	const transpileFile = (folder: string, file: string): void => {
-		const output = ts.transpile(fs.readFileSync(path.join(folder, file), "utf8"));
+		const input = JSON.stringify(fs.readFileSync(path.join(folder, "/inputs", file.replace('.ts', '.txt')), 'utf8').split("\n"));
+		const output = ts.transpile(fs.readFileSync(path.join(folder, file), "utf8")) + `\nexports.default(${input});`;
 		fs.writeFileSync(path.join(folder, "js", file.replace(".ts", ".js")), output);
 	};
 

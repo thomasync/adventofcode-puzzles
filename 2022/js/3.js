@@ -1,3 +1,4 @@
+"use strict";
 /*
 --- Day 3: Rucksack Reorganization ---
 One Elf has the important job of loading all of the rucksacks with supplies for the jungle journey. Unfortunately,
@@ -72,18 +73,16 @@ here, they are 18 (r) for the first group and 52 (Z) for the second group. The s
 Find the item type that corresponds to the badges of each three-Elf group. What is the sum of the priorities of those item types?
 
 */
-(function () {
-    var fs = require("fs");
-    var path = require("path");
-    var input = fs
-        .readFileSync(path.join(__dirname, "2022/inputs/3.txt"), "utf8")
-        .split("\n");
-    function score(letter) {
-        var sumItem = parseInt(letter, 36) - 9;
-        if (/^[A-Z]*$/.test(letter))
-            sumItem += 26;
-        return sumItem;
-    }
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.part2 = exports.part1 = void 0;
+function default_1(input) {
+    var part1 = exports.part1(input);
+    var part2 = exports.part2(input);
+    console.log("Sum of items : ".concat(part1));
+    console.log("Sum of typed items : ".concat(part2));
+}
+exports.default = default_1;
+function part1(input) {
     var sumPriorities = 0;
     input.forEach(function (line) {
         var firstPart = line.substring(0, line.length / 2);
@@ -94,6 +93,10 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
         if (item)
             sumPriorities += score(item);
     });
+    return sumPriorities;
+}
+exports.part1 = part1;
+function part2(input) {
     var sumPrioritiesTyped = 0;
     var lineIndex = 0;
     while (lineIndex < input.length) {
@@ -105,7 +108,14 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
         }
         lineIndex += 3;
     }
-    console.log(sumPriorities);
-    console.log(sumPrioritiesTyped);
-    fs.writeFileSync(path.join(__dirname, "2022/outputs/3.txt"), "".concat(sumPriorities, "\n").concat(sumPrioritiesTyped));
-})();
+    return sumPrioritiesTyped;
+}
+exports.part2 = part2;
+function score(letter) {
+    var sumItem = parseInt(letter, 36) - 9;
+    if (/^[A-Z]*$/.test(letter))
+        sumItem += 26;
+    return sumItem;
+}
+
+exports.default(["fzmmmfwDWFzlQQqjCQjDGnqq","tJHJvLJVVttNsvTtTvgHHSVwCsQRQQZCZZMqQMQBnqBMQs","LgThNJhNSgTJVgvgtghPhbpfWzfbwfPmpprb","lDLnSnLZRjmWrlhrFF","PffQJNqJbPZbpmjrrCVNFmCh","qzbcbqfMfZMTfQTqqzzTPPLMHgBBBtHRStvgHRDBnSRL","WPZfJlZZCMwwZPWCwWzVHQhsshVSsfNQHdvQNN","FLGDGGnGdVjQQQDQ","ccFFbggLnRcLFRtFBmnJzdZZzZBMpwJlZMppMp","RZsnCZssCnDccJCnfcQfHTdzMzhdLdMTqdRqpRLwqq","tNrGNrrvGhTThQqw","rrFStPgrFWWgvmPgQjtmNtmJcfJcsJsZblDZfbfHDFHnfl","RdTfgbbPbJWDDqRvsDsmVG","NSQZLQZHpFGLqnLszrJm","ZMSNMHhNZMMSQwhQJWPBJCbhbcgtgfcJ","qZfqPvLnnZGpGpCJlvsMsMlHJJHB","mTWFFFTTtVSJMzzjWgSH","RbVdtdFtcrmbRQDDVHDQTbDNwLPLfnqZnhZhQnNwfNqnnn","nhHfSGHGThhZjnhrrSnsSczdzlfzzdQQVzRNFNcFdl","JJvCDvmCbtvpvbMmDvLbCJpmqdVVVcMcNGzRcNFcRRzRclQd","vwDCwtLmwLBDJmCHHjHHWGZHBnsnnj","QWTMqZhThbTbLwtGBrQfQQNr","jdzSSccVPPcgcLrDBtDVwCfNNC","vcBgcmssccplTnnTqsMhWW","FlcwZhBhGZhFJnGtZZFwlGsWRLHdWqMzPjWRLTLJHHjdWq","vfmrmbpfpMfzjHjfdM","VCSmVpmrNDMZhSMcsFnh","nHqQVtVZGGwwwnSF","fMBBBWCsCfMMbWfbsGmGzFjQGQFCPhFQhF","fbcsWpJRsWlcNVLtqtLLQcZQ","rgNJdfNJpgpJVMMVfmfVJgCtCTqqqzwTqrBsTswcCCss","lFLHGWLvHQFhnQFhbFnbHWWPBtwqzBPTcsPTswZCPBGCTC","QQtbRtLhtjgdfMRMDV","jTRhJpGhQPfPLsDhWh","wVVMbqbHwVwwMplHWfsfNmWcSLqcLmSs","lVCZlHnwHdRpRGvZTBGJ","csppppDDbGLbSqndFHHNdHsH","lVTlgWgjzCzfgvfggZWWlnHPPBHrSCqBmrSBrHHBnF","QFgvFfjTvZjzlvVTWljvTtMbLcccbRRMbwLMMLQLbw","tjhLjLJzpJpwjsqqfQqNrNfRnsRR","WvwGBPwWZZrnbBNrNnnC","PDvGVTgvTMGvZTGTPvWDZVJjljtLzhtmLlJjwJVJLm","WbzpSNswNWszwSLgSNMcrrBfPJJcfsHMrvMv","CFllhlGFDVFRCmhQDlDTBBcvgBCTcHPHrfrHTJ","qGRgVFhDDZmDnDqhgQFGqzwtzSjddwZbzwpLNzjpdS","FlpZrQSJJmQpSpqlQgbbRZCgGCZdDdbNdd","WswHfjfnhWPFDsFRDcbBbR","WjHvjjWTfTvHFjzvPnPtttVTTJVLtJSpmtlltp","tnjrnnnnhNlPBtbbcWpZScpjbZSz","wmsFqfqqqGHTLbzpLLbgzMcH","FGJqsmQGRVFwwQJschPdhPrBndBhtPhrQQ","dRdJRfTnCRNlJjPBDmBJsbBDzm","wSFWSgGVSLwpFhpLhQjzgPzbtDPDbPBsztrP","WMGvVMLLBCclNHHRlM","gfSffQBDBtZvwwpWDHcbwb","JnCmmJCRmztsVPJRFjFchcGGWFWcGcHFvGLvHF","VCPzJnsPVCjtPjdMsMdmVmMBfgTZBTMfSfZSSlfNNgSSfg","lwHJSVZHWWVwJQwbbVVtwWVVdpdPfRfgDLPZLTZLDLgRDTZL","hhBrBqRcnhsFFfddmdmmCmmppn","MNNBBRRshNHbtVMzQJMM","NBsSNtLNTtNsvlTBBRLgFSCbFmbHFCFhgcghSm","WJWWDdVzDZJjDJQcCDHmmhCnmHmHFm","zQVdQZQwqVQHjqzWWWdHpzMwGMBlGLLtTvRvRNsMwwNN","ZCztttSjGSqRZgRPDNQQNr","hLvmHshLmLcFwwhhwLqMVRRRJQQVNnRJMVRDNNRr","HFhTpFqqLcssmqmFftblBSjCjStjbGWBfj","crffjHDfrQfnfpLPgbgP","TmFvFCmFTFFCtNsmMsRvlRTpPbLGMnGSngPppShGpbdgGJ","vmslmwTNmtstzFsCvRFrHBrDZzcQnWqcDDHqQB","LQLPVLGdGrRPRhHgwMhllhhs","ZbSZTNqSZfNqNCtSSmTttbpSWMlzWlslpWHsWgJWhwJzBMlz","bqjqqFFjHqTTTZTmSNbfmdrFQnDdcvVDGQDvvVnQnr","mQdcdsSThlccSWhMgDnQnFtjQPtnjPNvtR","zzsGwzrrHGBfZJGrJpDtNHFjvNvDvVRvNRtV","wZBCGrbrszTbThcTcLcb","gJDDDDcPQgQfNFPhhZGDDcZZSLVtlCqzsMlzqpszlsVtFSql","bBrdwHTrHWTrTtzLlSMCCCprCq","dnBwRvmnbmBvTpbnbWbTjZPQJhhchmJcmcQPfmGNcJ","sjMGBLWGZjsLjJTBCCbvNrBCHC","mpcRfDSSdqDdlRqdwRvFrHFbrHJFJVvDVrTb","qvlgqwpcSQSfLjjhzgnMzsnP","VgmLHHNRNVLNhsNgRHLltjjbCWnCWZbldntW","GGMFPJqPwJGTvvCCdqdqlqCj","rGwGrMQzJQBjJwTVHgDQDHcsfhVhVg","pblwGBlFlWwwlgCSFwbLvQZFvzvZhzvmQTLLzJ","HfqccHzVDNqLmmPmPPQZ","MNtrVdDjHtrzGBdbGWCblw","NNhnnLdnnfhdhVjvThvqVvCj","tHtHBzBGWHBWGtPBSvvpGZVbSsTFjSqqVbscgjCjqqSC","HBtzJHzzpDZpzMWpGPtWHvZwQmNLlmQnmNdfMmNRmwmlwd","QzGqGwmbfTdPBgRRcgmMPC","NtNZhljrNjrSrtltWlCJCJJfcVVRcJcRgPjf","NlWSZZWsHhWWlprSSvZWHrWfQLLQbLGfQpQzzTFQbwzQdd","gcwcSnccnwLRRSzcBQRvZZdvtNtvRbQJQv","CqrCrrPsVstvbfDfbb","TPlPVhWFFMGMnMjbcT","gjjHGvcHgsgbSRQbRFWbjC","ttnBTNSSfwBLzplWPPdlLlMPlMCQ","TBZpDtmnnZNvhJDHggqqgS","zfqzzGwMbllcJFqm","NpHgpRZrRpSrSZLghlTjchNlNbhFmchb","RHLWHgLBggZpHpgHRZrLgZLQCMzCfDWGMCzMQQGvPmvvfC","bBWWlFFBBFdVMLfvsfjrtBvTrr","qZsgNZzcwfjZrfPf","gcnNNcDncsDGzggDnNRJnzHhmlMVSSbhVVVmMbbhVmMlGl","dNNRQszqRhPNfddWltvDltMMNlnncv","ZjZbpgpSpjpJgpCCpbFlTnSDTlzclDnMvnnMlT","GCJpjbgzJCpwZwrHZrgHsRBwBVRRsqdqPhLBQqsP","mnnVCcwGwnsVJntmfnBtBhTDzpzzpDWbDbsLLzpWDz","FcHQdZSRHbhZZWWhrW","dNljMlPPHdMPvRlHMRdjRRNBnwJfCVqwqqffCfCwtcBV","ZGtGzBBGjvdZvLWLcrPVcZcsNVNmVpcH","MnlgngCJMgJbhfDbCDPrHHVcNNrVpbVpVmmcVq","lSPhlClftSSBvdGS","jFhGqVCcPMMdGFqczBltzrtglrsrjBgB","wWgwvfDZvnpmnHwHTfNpDbtRWbzltRlSrRlbBSbbzt","fHJvJvvTwwJPhCccgQCM","BrrrBVgNppDVBbTgDvqWdWZqWqwNmNNHvH","sHsHnHlcJjFwMMFFvGdPvv","HllCQCJQJsnjgtVTbBgpQrSr","JgLPLwbhBrCbLBCJPFFlPFZRTNTZFRqlRq","pmffSWvDcfSfGmvsNHZsTRsWllssbT","vDddMmScdStfzGcpzzwhJwJwnCbLwwLLCwht","sWSSvmsZsdZPWdLPRRsmSrrnlnvJjfnggfrgtfjnjr","VWWWBhhHBBHtljMMfJHrrt","WWqpWVqQqLNGRNZP","QHjjGVBQpffpjqppQsSsQHWJcVVgJFWcFTWgNLggFPNc","bzzmbzzZnZztFTNJWRqmqcgJ","zDZlqMtbwhCBBfppvHDGvf","BNTdfWJmzHNHHzzTdLCfCfCswQjRjljVsh","FbGnrFnrPGSSvGPFZFFPGClLQpjQRwLjLplQhRlsrQ","GbnvvgvPFwbwcnZMMGSFvFHdNHmTBNJNmmmDTJDBmWcT","rBhRPrjJrRtTHtWHWcjc","SDdGqmhdFSqblLGlHHfHWl","DSSmFqhsFqFdzqFgwsVnvBQPPQPQVrnRsJMR","NZcgQdmSwZgdPFPVNFPqqVVF","hlhhjMhGjLhLDGDhCBJDCrRFRrqqpLPfpfPRVPprPm","MlhjlMDDJTCmZddQQSTcTT","zRddrwzwNhrzrtCLtLfsLrqflC","MbSDZvVwGZpJwvHvBVfsqtjqlsPPfsqsfclb","vJpvJvZTVgTdTgwdTn","SZMsTTScDMqwtDDJ","VWrbzFvnrvFQQtnhzdPFmfwGfqmGPfDwmfPJ","rrLbrnVrLvVQpLHSHjsTBBjZBt","bSrpbWpPpfzPRWrWvhJgddrcccgFnFss","ljGNTCtMNLGQjNMjQMGtZJDDggcldcFcvhdFddnhhF","vNCmQMjmvGzpRPPzzmfw","BrbdcqcdSZRLQltNDqFpCpHH","jnTzWsWjWjwTQnzMvFlCzNDhNhDCFGpHpH","wmmvjVQMvwmsQMMwnsTPgVfgJcLcgfSbbBdBbJSdbSBS","bJFbMdcmgFSFgmggJFcGwjRdzPWZWGDDGGRwGD","hrttffCVVCTVlrttQwzRzwWTqRGDGwjTvG","rfLChHhlpHrfHlnWlpWCpQVcMSmMmSJMmggbmMSMLFNSSs","JRMBJfMJQJTcNNdD","LHsLmspghmmpdwwwcwRCpPTT","ttLLlRSlqjrMqFtZ","VjtHVHtvVqttCdnGpHtplcshglNgprrlMhrcNghw","WTWRvRWFZQLWDvDWzwscNfcflcshlshFlw","WQmBQWPTVGnJPnvn","cpRwjcQwVfQzQPQl","BZgGDBZBsgWBDDJzlhfhJVmzVfmThm","FqWDDGrGDFNqFrDZFnplNHnSwtnSRwRplN","VMLVRhRLRfhfgGdfVdZWRdTHNqHCDTrSJNBBBgJNQgND","swlcpsFPcPwzpSlTTDrNrQPQqQBBrH","zsppFscsscmbzsFsbsZbMfRZdVdVMbVSWhLG","NjcjHFjrHHFpjGtVtGWVZW","fwPlsJqdndPnwJfQdfllwNtWGdtWMMbtbmbGWbMWGN","CPlwnCwnwqClTJThTDzzFcHNSShrRh","llqlsNsPNTpDNTDNNf","cnvcWFjSrMSFnvWHTzTggHCcllzLpg","wjJSSrFrrMMJGrFFFGjGvJnFswsRwRdmBdZbbqqsPtQqPZls","jlclpqjcRqpjzjnVPgTmBmjCrC","vGvsFNGGMZNvdGshQNJvJgbVMrnbrHVBgBTTbBBPBT","SvJNGhvvvFdfQvFshSpqPqLzRRPctRcLWwlf","LWSSqLVBbNqqLrWHLSHzWbbqQfFgZtmtJCQZzgtCFCQCCnJQ","PlldGDGdjGsMPhssjPmQZFJQQZQghChZQJgv","jwMcMpsPRRdsRjPwNpTWBLSBqVqTNJWT","hWnMWgTffWFbMLfHnFMNfHgjtBSNRzjBBSzSBBcStdzBtz","VGrVCGcVJswvPqJQjtQppBzpSwdjpt","ZqqsCrmmsfmWcHhngg","vnNnssMcZnlnlMFMsnFcZMGqJCbLbNLNqgLbgLNTCpLgwC","hmjzBzHmRSfBfmqgQwpQQJbQJmwT","WVVtthRtRdsdqtddZd","LhZBLfZpmcsFpFzm","vTRRwTRRPnCTwlFgmsczzLmgLvFs","HVVVNCPPHTTtClRVNSnwLTHSQHBMMHrHWBhrQbJhWMMbZbJZ","WPTnnDPjvPlChhJPcgCC","DRQdBqsDQHQLHsBSmVLBcbwgCClbgCGlJghgmhgw","dHMHQDVVRBsMWTNfWfzWzf","PlgFPFFJGgJhhMGZwGbpBtQjjjStBttptlSb","TTcDzmHvdvnDDzdTVnTDmSspWspQLpWmSsmqppsWtb","CHVdcHvdbrwJCMPRGJwP","BtBfcPfBhBGDhwHMlCmrNSCM","dQdzLFTQnRnQVvgLnNlrCCpFrJCNrHJrwm","zRVLZQRRvQGbwtWfbGZb","PPcWcwMmCwwgnphCCLpjHp","TtZsJTzzJSSSZJsdJtTrpblhRlHHHMngpLnnjHps","ZDrvdFZtJqtStrZfMcGDVwfwffmWmP","wCwSzzsHChhMVMhCPsSVLFWcdcWGPccRdjFdJjDR","wBTTlBfgTlfpQQltmfgGGctRdGJJJFDJDDWdDt","TppwnmlnQQqnlpqlmmwqlpphHqrVrZZSzshzShqzsrZVqs","CCqCTgmdMCCCMMsWgqqnTCmJDGJcGGJfrGNGrSrrQpwFFSwG","vZbDZvhDbzHzwNzwNGFNpNGc","ZjBRVHPRtRLjLMWsCDlmgMdBmW","MMsstRChwbChqRBqDrJNpNDsHdlNlJdr","vLmPLfGGGGcTmFfTSgvPCvpZQlHHZpdrFJplQdZHQdHH","GgPLmvGVSPfmfcfgBtjwCRwwjBbtVWbh","LPPgFPccLPRswfsHfJgDsH","bpbpTnCCrnmCtjBnTfDshHDwQVTwsDhQ","BbrjnjnWCbBWZbPWzLDzDWdNlMWS","pnncvLbcppBHgBRpddGd","MtJfjVMtMmFJDjWSjVWzGdGgNQRBzBGNBMCGNB","ZdDdsJFdDmtJmLTbwcvcbcnwZv","FGsfFdNdhfbDdbhbLMhbNNTPJVCCZTLJnCRVJLPCRTVR","qHjsczptHpmgHZBBVVTrrPzrBP","lmpSlcglQtqWtcWjpQQfWsGDMhGFwdbGGNWhDv","hNNNjMFMwthjFfvZBjFFvNSdnzSGGdGmHzHgGWSfHWSR","ppJpcCVslpQJpJJDWHCHmRHHWWGSDn","QbsrJQTQJVJNMNnZTZNZvZ","NmRNLtGNmfcRrtDtrJCnWHJD","blSzzSBssgfslWCCCJWFWHrsZF","zTzbPBhMlTVSzMlMldlgMvvvvMLGcQRmqLLfvRwQ","nnZsfsPLLfZfHLWdsZWZHdmcSpTcGmNScJTRGsTJmNcF","gqVqDMgBlDbwwCqVbQFpTNFcTRSJNSrqqTSm","jlMVMjljQBjMwhLfWWzhhfhZtmLH","bfHwMvzwFBNpRjfZ","nddcVJpGVpGqPVBBFBmhBhmsNRJs","DWcPgPcPgnqCPlWWVWGMwbzwvQSSLbvgLpHHMz","NMVqtdPVHgVlrfVrpnjCwNjjpCpNNpCb","zhSvfWWzRfRLfvSpQjwbmmmvQvwwCD","LBRRTRcLJSgqqMJlVVft","GpgNzzSMGpGTrgzgMzJTrPgzjRwBdBlBbLRBjdBwVbLRVbSR","sQWCfQcflhtQQcWCmsmlsbLnRdwqqBmmbBVbLVLwnB","fCtQWFWDZFCQhCctFDsftNpzPPzZJpgJJNTgNlPZgH","DqLtMSDLLttjdDSRdjZtdpdqVWFslFWrqWPqhwhfFwwCFw","CvTbNvvTJNGHnVJwPfwFFFwsrh","cQBzGBHnTQGgcNtdMMBpDBtCdtLL","QsNDfdDNQsSTtrQZQtJJZC","lLvRWMVMLzWbRjvVgVVGvmTtCrZBrTFFbmJCmsBCrr","lljvlgpMGgRpsjsRlGGsMdqDdpDqNqfhqqSdncpqdP","sVSJVmmtmsCCwschrbNMbcBs","ZgLLfqvzzqgfdqHQLnTLfQQFhFMrhbNGBwgGbMlNcFclwN","LTzqZrHHQvjLHnHdQTdTQvZQJjCpCJDPmCRRtCpStRRmVtmm","ccQVcVHwnnDqNqSWNnVvqwcgJblgRslgmdGlssmGbQdddb","rpFtPrzrMFZvZTLPpglhdssFshssJhsggG","pTtLtBMjZLfHvNWqcBHf","PZnSjnnsVfjfLLff","crvccpglrtHfNbzbHLzmGN","lptTLFFpdgvttFWltTclplDvhJMSMPhJPhChShPBZBMJhPMT","mPSPdnhznPdhSmPGchJdFDtBhghgFgWpFBQhTBMg","rHNNvbqHHHwZwMGMWtgtQMZQFQ","wRqqRffvvNHwrHqrNqLvCrqvmPnzdsGJsSsSdSsLPVVPnjsn","CzlngWpClJlzRJpDnpmzCndrhBcrhwcsBcLsNcsmLdQQ","qqSjqFGTFbPFSPTVjcBcBsDdQrwBVLrNcc","PtDDtZTvGDvFCMzZlRJCfWfJ","vtQDpvpvVvvcSFrrljZZsVjFrV","RqcTTRddRrlsjZrwrT","zmbdRdMmMgbPDcGhGmnDpcQn","gZqJRZRZdltFVGZQDZwV","MCMSRHCMRHBBVtVCGwDCFGtD","jcHsTMBNSSrBMjmMrcTMpRqpJggllnprqzRPzdlP","mWSWHdmHWZWjBnGs","TvchwtTfcTvhzwVGNtdrbjnnBnsnNr","JTdwghvMzwfdcMVJqPmQFRPpCDJRJFFC","DsHDCrszvvhHsshvsrrsgwdPpdLFgWLpbRpWFfMjWjWF","BVJPJmPmGZVnfbVfMWpdLMWb","cNGtnttqmJHNvNzDPPHN","gpjmMQMrfmMntCSCNmSNCm","vDRqphDhzHSdtqdCNH","LFLLcbJRJLppFQlpMFfF","SnSdvchzZZczndNvwcwnQrGfqrTTfhhTDgRGGLQQ","lVWHWMmWmttsFBMLLqLTRRRqqDBGTf","bsFPbFFssmFjWRmjVFjHbczvpZCwvwZccndpvzpzCP","jzngbHrlHQllcbcTCtHGWtftGCHqWC","JJgmsJRwFqChLGtqGs","SmJmSmDdSPRwSMppJdPPwVvvzNQvjrNMNjMZZrQgZNgQ","PvPlPcZPZFllzNzCDdhhdHjrpHNjHBHB","VmgWtJWrqbQmqGDBdGQjjhBGdG","tmbgggbgnMWnStttgnfnTzrCfPvFnccnPclT","RQQbdSRdpprQSNVqqqfrffjvnjnJnhnVvHhBhVjJtjJz","WGgGgLmLgGZMPDBhDJDHjMBFnD","WPPwPGwlLgZwmWlslCLRNbrsTrfRrNNQqsspBT","dNNpHpchLppdccTNtZZTRRPSSnwPPSbSnhhrhnSJ","qfqsFsqffgQMznJrPznbMrrB","vglfqQCgDgFjglCDCjLZpTHNPHttdcZVVN","FWtDHDStZwrFCDwrgWPFDsWQJZzlMdpZzlNpNjdjjQzNzj","BqnVGVcbTmGfHLGVzvpQpvJvQlflMdJp","ThRRchnHqLTGbFCCCrrSSFhFCs","wJrwdZPnJwqPbJPCnjFZdvHtMvsLsTsDtHsHDDqvpH","RWzNRWjRfgjNMMLvcMcLNt","WGGRQzzRmRmVQSgwrwJjjCbJhnbShJ","cjngcvcwbMwWnbMWjbgvnsjPftsqfthqsBtsJJJJBt","HrGFmDDzpmLTHpDsPfsBNBPfzZNPqN","DDVmDplDrpGSVSTTHGlpLnPwCRnWcvWCdPbbMvcVdW","BVRlBfPBffWswVWQsfwBNNPMFMmmGFZGnWZGtztrzMZMnz","HqSJchHTHbTgHhGhvmRzFmnFtzRF","RJqHTpgDLJDSqLJJPNVjsfPwBVsVLlfN","NDrBlSmrFBlbbJllmtHHwhNNhZztqHVRzQ","CMTCGLcvvtfCdCcCvCnMTMcTzjHwVZVRLjRRjQjRHRwzwjVH","dfGdgGMGPggnvfvgbtDtlSJPDSFJPslJ"]);
