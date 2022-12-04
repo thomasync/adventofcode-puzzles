@@ -13,12 +13,7 @@ describe("2022 - Day 1", () => {
 	});
 
 	test("Part 2", () => {
-		expect(day1.part2(
-			day1.part1(this.input_sample)[1])
-		).toBe(45000);
-
-		expect(day1.part2(
-			day1.part1(this.input)[1])
-		).toBe(207456);
+		expect(day1.part2(day1.part1(this.input_sample)[1])).toBe(45000);
+		expect(day1.part2(day1.part1(this.input)[1])).toBe(207456);
 	});
 });
