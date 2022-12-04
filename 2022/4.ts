@@ -58,14 +58,16 @@ In how many assignment pairs do the ranges overlap?
 export default function (input: string[]): void {
 	const part1 = exports.part1(input);
 	const part2 = exports.part2(input);
-    console.log(`${part1} pairs fully contain the other`);
-    console.log(`${part2} pairs overlap`);
+	console.log(`${part1} pairs fully contain the other`);
+	console.log(`${part2} pairs overlap`);
 }
 
 export function part1(input: string[]): number {
 	return input
 		.map((line: string) => {
-			return line.split(",").map((a: string) => a.split("-").map((b: string) => +b));
+			return line
+				.split(",")
+				.map((a: string) => a.split("-").map((b: string) => +b));
 		})
 		.reduce((acc: number, curr: number[][]) => {
 			if (curr[0][0] >= curr[1][0] && curr[0][1] <= curr[1][1]) {
@@ -93,10 +95,10 @@ export function part2(input: string[]): number {
 				});
 		})
 		.reduce((acc: number, curr: number[][]) => {
-            const inter = curr[0].filter(value => curr[1].includes(value));
-            if (inter.length > 0) {
-                return acc + 1;
-            }
+			const inter = curr[0].filter((value) => curr[1].includes(value));
+			if (inter.length > 0) {
+				return acc + 1;
+			}
 			return acc;
 		}, 0);
 }

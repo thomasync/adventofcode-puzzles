@@ -68,12 +68,12 @@ const attributs = {
 	win: { A: "Y", B: "Z", C: "X" },
 	draw: { A: "X", B: "Y", C: "Z" },
 	lose: { A: "Z", B: "X", C: "Y" },
-	scores: { X: 1, Y: 2, Z: 3 }
+	scores: { X: 1, Y: 2, Z: 3 },
 };
 
-export default function(input: string[]): void {
+export default function (input: string[]): void {
 	const part1 = exports.part1(input);
-    const part2 = exports.part2(input);
+	const part2 = exports.part2(input);
 
 	console.log(`Total score guide part 1 ${part1}`);
 	console.log(`Total score guide part 2: ${part2}`);
@@ -89,20 +89,20 @@ export function part1(input: string[]): number {
 			totalScore += 6;
 		} else if (attributs.draw[opponent] === you) {
 			totalScore += 3;
-		}	
+		}
 		totalScore += score;
 	});
 
 	return totalScore;
 }
 
-export function part2(input: string[]): number {    
+export function part2(input: string[]): number {
 	let totalScore = 0;
 	input.forEach((line: string) => {
 		const [opponent, you] = line.split(" ");
-		if (you === 'X') {
+		if (you === "X") {
 			totalScore += attributs.scores[attributs.lose[opponent]];
-		} else if (you === 'Y') {
+		} else if (you === "Y") {
 			totalScore += attributs.scores[attributs.draw[opponent]] + 3;
 		} else {
 			totalScore += attributs.scores[attributs.win[opponent]] + 6;

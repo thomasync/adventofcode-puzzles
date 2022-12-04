@@ -62,19 +62,19 @@ Find the top three Elves carrying the most Calories. How many Calories are those
 
 */
 
-export default function(input: string[]): void {
+export default function (input: string[]): void {
 	const part1 = exports.part1(input);
-    const part2 = exports.part2(part1[1]);
+	const part2 = exports.part2(part1[1]);
 
 	console.log(`The elf with the most calories has ${part1[0]} calories.`);
-    console.log(`The top 3 elves can carry ${part2} calories.`);
+	console.log(`The top 3 elves can carry ${part2} calories.`);
 }
 
 export function part1(input: string[]): [number, number[]] {
-    const caloriesElves: number[] = [];
+	const caloriesElves: number[] = [];
 	let elve = 0;
 
-    input.forEach((calorie: string) => {
+	input.forEach((calorie: string) => {
 		if (calorie === "") {
 			caloriesElves.push(elve);
 			elve = 0;
@@ -84,12 +84,14 @@ export function part1(input: string[]): [number, number[]] {
 	});
 
 	const caloriesElf = Math.max(...caloriesElves);
-    return [caloriesElf, caloriesElves];
+	return [caloriesElf, caloriesElves];
 }
 
-export function part2(caloriesElves: number[]): number {    
+export function part2(caloriesElves: number[]): number {
 	caloriesElves.sort((acc: number, curr: number) => curr - acc);
-	const topThreeElvesCalories = caloriesElves.slice(0, 3).reduce((acc: number, curr: number) => acc + curr);
+	const topThreeElvesCalories = caloriesElves
+		.slice(0, 3)
+		.reduce((acc: number, curr: number) => acc + curr);
 
 	return topThreeElvesCalories;
 }

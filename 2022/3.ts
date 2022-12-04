@@ -73,9 +73,9 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 
 */
 
-export default function(input: string[]): void {
+export default function (input: string[]): void {
 	const part1 = exports.part1(input);
-    const part2 = exports.part2(input);
+	const part2 = exports.part2(input);
 
 	console.log(`Sum of items : ${part1}`);
 	console.log(`Sum of typed items : ${part2}`);
@@ -96,12 +96,15 @@ export function part1(input: string[]): number {
 	return sumPriorities;
 }
 
-export function part2(input: string[]): number {    
+export function part2(input: string[]): number {
 	let sumPrioritiesTyped = 0;
 	let lineIndex = 0;
 	while (lineIndex < input.length) {
 		for (let i = 0; i < input[lineIndex].length; i++) {
-			if (input[lineIndex + 1].includes(input[lineIndex][i]) && input[lineIndex + 2].includes(input[lineIndex][i])) {
+			if (
+				input[lineIndex + 1].includes(input[lineIndex][i]) &&
+				input[lineIndex + 2].includes(input[lineIndex][i])
+			) {
 				sumPrioritiesTyped += score(input[lineIndex][i]);
 				break;
 			}
