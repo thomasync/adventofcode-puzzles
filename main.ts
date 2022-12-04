@@ -45,10 +45,13 @@
 
 	console.clear();
 
-	const inputFileName = lastModified.name.replace(/([0-9]{1,2})\.ts/, 'inputs/$1.txt');
+	let inputFileName = lastModified.name.replace(/([0-9]{1,2})\.ts/, 'inputs/$1.txt');
 	if(!fs.existsSync(inputFileName)) {
-		console.log(`Waiting for input file ${inputFileName.replace(/.*(2\d{3})/, '$1')}`);
-		return;
+		inputFileName = lastModified.name.replace(/([0-9]{1,2})\.ts/, 'inputs/$1_sample.txt');
+		if(!fs.existsSync(inputFileName)) {
+			console.log(`Waiting for input file ${inputFileName.replace(/.*(2\d{3})/, '$1')}`);
+			return;
+		}
 	}
 
 	const input = JSON.stringify(fs.readFileSync(inputFileName, 'utf8').split("\n"));
