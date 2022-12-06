@@ -67,7 +67,9 @@ exports.default = default_1;
 function part1(input) {
     return input
         .map(function (line) {
-        return line.split(",").map(function (a) { return a.split("-").map(function (b) { return +b; }); });
+        return line
+            .split(",")
+            .map(function (a) { return a.split("-").map(function (b) { return +b; }); });
     })
         .reduce(function (acc, curr) {
         if (curr[0][0] >= curr[1][0] && curr[0][1] <= curr[1][1]) {

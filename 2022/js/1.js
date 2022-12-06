@@ -89,7 +89,9 @@ function part1(input) {
 exports.part1 = part1;
 function part2(caloriesElves) {
     caloriesElves.sort(function (acc, curr) { return curr - acc; });
-    var topThreeElvesCalories = caloriesElves.slice(0, 3).reduce(function (acc, curr) { return acc + curr; });
+    var topThreeElvesCalories = caloriesElves
+        .slice(0, 3)
+        .reduce(function (acc, curr) { return acc + curr; });
     return topThreeElvesCalories;
 }
 exports.part2 = part2;

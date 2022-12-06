@@ -70,7 +70,7 @@ var attributs = {
     win: { A: "Y", B: "Z", C: "X" },
     draw: { A: "X", B: "Y", C: "Z" },
     lose: { A: "Z", B: "X", C: "Y" },
-    scores: { X: 1, Y: 2, Z: 3 }
+    scores: { X: 1, Y: 2, Z: 3 },
 };
 function default_1(input) {
     var part1 = exports.part1(input);
@@ -99,10 +99,10 @@ function part2(input) {
     var totalScore = 0;
     input.forEach(function (line) {
         var _a = line.split(" "), opponent = _a[0], you = _a[1];
-        if (you === 'X') {
+        if (you === "X") {
             totalScore += attributs.scores[attributs.lose[opponent]];
         }
-        else if (you === 'Y') {
+        else if (you === "Y") {
             totalScore += attributs.scores[attributs.draw[opponent]] + 3;
         }
         else {

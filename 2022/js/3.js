@@ -101,7 +101,8 @@ function part2(input) {
     var lineIndex = 0;
     while (lineIndex < input.length) {
         for (var i = 0; i < input[lineIndex].length; i++) {
-            if (input[lineIndex + 1].includes(input[lineIndex][i]) && input[lineIndex + 2].includes(input[lineIndex][i])) {
+            if (input[lineIndex + 1].includes(input[lineIndex][i]) &&
+                input[lineIndex + 2].includes(input[lineIndex][i])) {
                 sumPrioritiesTyped += score(input[lineIndex][i]);
                 break;
             }
