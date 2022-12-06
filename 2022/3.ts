@@ -115,7 +115,7 @@ export function part2(input: string[]): number {
 	return sumPrioritiesTyped;
 }
 
-function score(letter: string): number {
+const score = (letter: string): number => {
 	let sumItem = parseInt(letter, 36) - 9;
 	if (/^[A-Z]*$/.test(letter)) sumItem += 26;
 	return sumItem;

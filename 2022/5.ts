@@ -99,37 +99,42 @@ Before the rearrangement process finishes, update your simulation so that the El
 
 export default function (input: string[]): void {
 	const part1 = exports.part1(input);
-    const part2 = exports.part2(input);
-    console.log(`${part1}`);
-    console.log(`${part2}`);
+	const part2 = exports.part2(input);
+	
+    console.log(part1);
+	console.log(part2);
 }
 
 export function part1(input: string[]): string {
-    const stacks = parseStacks(input);
-    return move(input, stacks, true);
+	const stacks = parseStacks(input);
+	return move(input, stacks, true);
 }
 
 export function part2(input: string[]): string {
-    const stacks = parseStacks(input);
-    return move(input, stacks, false);
+	const stacks = parseStacks(input);
+	return move(input, stacks, false);
 }
 
 const move = (input: string[], stacks: string[][], reverse = false) => {
-    const inputMoves = input.join("\n").split("\n\n")[1].split("\n");
-    inputMoves.map((line: string) => {
-        const [count, from, to] = line.match(/\d+/g).map(Number);
-        const load = stacks[from].splice(stacks[from].length-count, count);
-        stacks[to].push(...(reverse ? load.reverse() : load));
-    })
-    
-    return stacks.map((stack: string[]) => stack.pop()).join('');
-}
+	const inputMoves = input.join("\n").split("\n\n")[1].split("\n");
+	inputMoves.map((line: string) => {
+		const [count, from, to] = line.match(/\d+/g).map(Number);
+		const load = stacks[from].splice(stacks[from].length - count, count);
+		stacks[to].push(...(reverse ? load.reverse() : load));
+	});
+
+	return stacks.map((stack: string[]) => stack.pop()).join("");
+};
 
 const parseStacks = (input: string[]) => {
-    const inputStacks = input.join("\n").split("\n\n")[0].split("\n");
-    const linesStacks = inputStacks.map((line: string) => line.split(''));
-    const stacks = Array.from(Array(10), () => []);
+	const inputStacks = input.join("\n").split("\n\n")[0].split("\n");
+	const linesStacks = inputStacks.map((line: string) => line.split(""));
+	const stacks = Array.from(Array(10), () => []);
 
-    linesStacks.reverse().map((line: string[]) => line.map((c, col) => c.match(/[A-Z]/) && stacks[((col+3)/4)].push(c)))
-    return stacks;
-}
+	linesStacks
+		.reverse()
+		.map((line: string[]) =>
+			line.map((c, col) => c.match(/[A-Z]/) && stacks[(col + 3) / 4].push(c))
+		);
+	return stacks;
+};

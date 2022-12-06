@@ -58,7 +58,7 @@ In how many assignment pairs do the ranges overlap?
 export default function (input: string[]): void {
 	const part1 = exports.part1(input);
 	const part2 = exports.part2(input);
-	
+
 	console.log(`${part1} pairs fully contain the other`);
 	console.log(`${part2} pairs overlap`);
 }

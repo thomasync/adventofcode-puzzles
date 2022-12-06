@@ -102,8 +102,8 @@ exports.part2 = exports.part1 = void 0;
 function default_1(input) {
     var part1 = exports.part1(input);
     var part2 = exports.part2(input);
-    console.log("".concat(part1));
-    console.log("".concat(part2));
+    console.log(part1);
+    console.log(part2);
 }
 exports.default = default_1;
 function part1(input) {
@@ -125,13 +125,17 @@ var move = function (input, stacks, reverse) {
         var load = stacks[from].splice(stacks[from].length - count, count);
         (_a = stacks[to]).push.apply(_a, (reverse ? load.reverse() : load));
     });
-    return stacks.map(function (stack) { return stack.pop(); }).join('');
+    return stacks.map(function (stack) { return stack.pop(); }).join("");
 };
 var parseStacks = function (input) {
     var inputStacks = input.join("\n").split("\n\n")[0].split("\n");
-    var linesStacks = inputStacks.map(function (line) { return line.split(''); });
+    var linesStacks = inputStacks.map(function (line) { return line.split(""); });
     var stacks = Array.from(Array(10), function () { return []; });
-    linesStacks.reverse().map(function (line) { return line.map(function (c, col) { return c.match(/[A-Z]/) && stacks[((col + 3) / 4)].push(c); }); });
+    linesStacks
+        .reverse()
+        .map(function (line) {
+        return line.map(function (c, col) { return c.match(/[A-Z]/) && stacks[(col + 3) / 4].push(c); });
+    });
     return stacks;
 };
 
